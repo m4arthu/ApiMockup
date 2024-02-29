@@ -1,66 +1,197 @@
-# Teste Técnico Front-end Be
+# json-server
 
-Este é um repositório para Testes Técnicos em Front-end da Be. Ele é destinado a pessoas que participam de nossos processos seletivos. 
+[![Node.js CI](https://github.com/typicode/json-server/actions/workflows/node.js.yml/badge.svg)](https://github.com/typicode/json-server/actions/workflows/node.js.yml)
 
-Se você chegou até aqui por meio de um formulário de Teste Técnico, siga em frente. Caso contrário, acompanhe a Be no [Linkedin](https://br.linkedin.com/company/bemobiletech), [Instagram](https://www.instagram.com/bemobile.tech/), [Facebook](https://www.facebook.com/bemobile.tech) ou na nossa comunidade no [Telegram](https://t.me/be_tech_community). Divulgamos novos processos seletivos por lá.
+> [!IMPORTANT]
+> Viewing alpha v1 documentation – usable but expect breaking changes. For stable version, see [here](https://github.com/typicode/json-server/tree/v0)
 
-## Desafio
+## Install
 
-O Teste Técnico para Front-End da Be consiste em construir a visualização de uma tabela com dados que virão de uma API simulada, em json-server.
+```shell
+npm install json-server
+```
 
-### Mockup
+## Usage
 
-Este é o [projeto em Figma](https://www.figma.com/file/yw6th52zE9bubewc6ayTg5/Teste-T%C3%A9cnico-Front-End-Be.?type=design&node-id=1%3A4&mode=dev&t=vVxs9eyKybrYmq4Z-1) para você se orientar. Nele, você encontrará estilos, visualização desktop e mobile e outros padrões que deverá seguir.
+Create a `db.json` or `db.json5` file
 
-### Requisitos Gerais
+```json
+{
+  "posts": [
+    { "id": "1", "title": "a title", "views": 100 },
+    { "id": "2", "title": "another title", "views": 200 }
+  ],
+  "comments": [
+    { "id": "1", "text": "a comment about post 1", "postId": "1" },
+    { "id": "2", "text": "another comment about post 1", "postId": "1" }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
+```
 
-Deve-se utilizar React.js ou Vanilla JS (JavaScript puro) para construir o projeto.
+<details>
 
-É permitido utilizar libs externas, mas recomenda-se que seja o mínimo possível.
+<summary>View db.json5 example</summary>
 
-A visualização deve ser responsiva.
+```json5
+{
+  posts: [
+    { id: '1', title: 'a title', views: 100 },
+    { id: '2', title: 'another title', views: 200 },
+  ],
+  comments: [
+    { id: '1', text: 'a comment about post 1', postId: '1' },
+    { id: '2', text: 'another comment about post 1', postId: '1' },
+  ],
+  profile: {
+    name: 'typicode',
+  },
+}
+```
 
-A tabela deve conter as seguintes colunas:
+You can read more about JSON5 format [here](https://github.com/json5/json5).
 
-- imagem (thumb do/a usuário/a);
-- nome;
-- cargo
-- data de admissão;
-- telefone.
+</details>
 
-Também deve ser possível realizar pesquisa na tabela por meio de um input. O input de pesquisa deve permitir filtrar dados por cargo, nome e telefone.
+Pass it to JSON Server CLI
 
-Datas e telefones devem ser formatadas no front-end e não na API.
+```shell
+$ npx json-server db.json
+```
 
-Tenha instaladas em sua máquina as ferramentas [Git](https://git-scm.com/), [Node.js](https://nodejs.org/en/) e [Yarn](https://yarnpkg.com/) (ou outro gerenciador de pacotes de sua preferência) para poder trabalhar no projeto.
+Get a REST API
 
-### Acesso aos dados da API simulada
+```shell
+$ curl http://localhost:3000/posts/1
+{
+  "id": "1",
+  "title": "a title"
+}
+```
 
-Para ter acesso aos dados que alimentarão o projeto, faça o seguinte:
+Run `json-server --help` for a list of options
 
-1. caso você não tenha, instale o pacote [json-server](https://github.com/typicode/json-server);
-2. clone este repositório do GitHub em sua máquina: [https://github.com/BeMobile/desafio-front-end](https://github.com/BeMobile/desafio-front-end);
-3. entre na pasta do projeto, em sua máquina, e, por meio da linha de comando, execute o comando `json-server --watch db.json`, para consumir a API simulada;
-4. inicie a estrutura e o desenvolvimento do projeto.
+## Sponsors ✨
 
-É necessário deixar o json-server rodando no terminal para que os dados sejam visualizados no projeto.
+|                                                                                    Sponsors                                                                                    |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|                         <a href="https://mockend.com/" target="_blank"><img src="https://jsonplaceholder.typicode.com/mockend.svg" height="70px"></a>                          |
+| <a href="https://www.storyblok.com/" target="_blank"><img src="https://github.com/typicode/json-server/assets/5502029/c6b10674-4ada-4616-91b8-59d30046b45a" height="40px"></a> |
+|  <a href="https://betterstack.com/" target="_blank"><img src="https://github.com/typicode/json-server/assets/5502029/44679f8f-9671-470d-b77e-26d90b90cbdc" height="40px"></a>  |
 
-Caso você tenha problemas com o json-server, tente rodá-lo com `npx json-server db.json` ou 
-com `yarn json-server <path>/db.json`, em que `<path>` é o caminho completo até o diretório em que o arquivo db.json está localizado. Se mesmo assim não funcionar, busque ajuda na web.
+[Become a sponsor and have your company logo here](https://github.com/users/typicode/sponsorship)
 
-### Critérios de Avaliação
+## Sponsorware
 
-Em ordem de relevância, avaliaremos:
+> [!NOTE]
+> This project uses the [Fair Source License](https://fair.io/). Only organizations with 3+ users are kindly asked to contribute a small amount through sponsorship [sponsor](https://github.com/sponsors/typicode) for usage. __This license helps keep the project sustainable and healthy, benefiting everyone.__
+> 
+> For more information, FAQs, and the rationale behind this, visit [https://fair.io/](https://fair.io/).
 
-1. lógica de programação;
-2. organização (do código e dos arquivos);
-3. CSS do projeto;
-4. README, que deve conter, pelo menos, as seguintes informações: sobre o projeto, pré-requisitos e instruções para rodar a aplicação.
+## Routes
 
-Serão diferenciais na avaliação o uso de TypeScript e Styled Components.
+Based on the example `db.json`, you'll get the following routes:
 
-### Envio da Solução
+```
+GET    /posts
+GET    /posts/:id
+POST   /posts
+PUT    /posts/:id
+PATCH  /posts/:id
+DELETE /posts/:id
 
-O projeto deverá ser hospedado em um repositório no seu GitHub. O link do repositório deverá ser fornecido por meio do formulário de Teste Técnico encaminhado ao seu e-mail. Não serão aceitos links de projetos enviados por outros meios.
+# Same for comments
+```
 
-Demais instruções e regras serão instruídas nos formulários e nas comunicações do processo seletivo do qual você está participando.
+```
+GET   /profile
+PUT   /profile
+PATCH /profile
+```
+
+## Params
+
+### Conditions
+
+- ` ` → `==`
+- `lt` → `<`
+- `lte` → `<=`
+- `gt` → `>`
+- `gte` → `>=`
+- `ne` → `!=`
+
+```
+GET /posts?views_gt=9000
+```
+
+### Range
+
+- `start`
+- `end`
+- `limit`
+
+```
+GET /posts?_start=10&_end=20
+GET /posts?_start=10&_limit=10
+```
+
+### Paginate
+
+- `page`
+- `per_page` (default = 10)
+
+```
+GET /posts?_page=1&_per_page=25
+```
+
+### Sort
+
+- `_sort=f1,f2`
+
+```
+GET /posts?_sort=id,-views
+```
+
+### Nested and array fields
+
+- `x.y.z...`
+- `x.y.z[i]...`
+
+```
+GET /foo?a.b=bar
+GET /foo?x.y_lt=100
+GET /foo?arr[0]=bar
+```
+
+### Embed
+
+```
+GET /posts?_embed=comments
+GET /comments?_embed=post
+```
+
+## Delete
+
+```
+DELETE /posts/1
+DELETE /posts/1?_dependent=comments
+```
+
+## Serving static files
+
+If you create a `./public` directory, JSON Serve will serve its content in addition to the REST API.
+
+You can also add custom directories using `-s/--static` option.
+
+```sh
+json-server -s ./static
+json-server -s ./static -s ./node_modules
+```
+
+## Notable differences with v0.17
+
+- `id` is always a string and will be generated for you if missing
+- use `_per_page` with `_page` instead of `_limit`for pagination
+- use Chrome's `Network tab > throtling` to delay requests instead of `--delay` CLI option
